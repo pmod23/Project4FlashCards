@@ -1,0 +1,199 @@
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.section {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#start-screen,
+#end-screen {
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 30px;
+  font-weight: 400;
+  font-size: 60px;
+}
+
+#results {
+  margin-bottom: 30px;
+  font-weight: 400;
+  font-size: 45px;
+}
+
+.btn {
+  display: block;
+  width: max-content;
+  margin: 0 auto;
+
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.btn-circle {
+  display: block;
+
+  height: 80px;
+  width: 80px;
+
+  border: 3px solid palegreen;
+  color: palegreen;
+  border-radius: 50%;
+  background: transparent;
+
+  cursor: pointer;
+
+  margin: 0 15px;
+
+  transition: all 0.3s ease;
+}
+
+.btn-circle:hover,
+.btn-circle:focus {
+  background-color: palegreen;
+  color: #fff;
+  outline: none;
+}
+
+.btn-circle:first-child {
+  border-color: indianred;
+  color: indianred;
+}
+
+.btn-circle:first-child:hover,
+.btn-circle:first-child:focus {
+  background-color: indianred;
+  color: #fff;
+}
+
+.btn-circle span {
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.container {
+  max-width: 1100px;
+  width: 100%;
+}
+
+.title-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.title-bar__instructions {
+  text-align: center;
+  height: 50px;
+
+  width: 100%;
+  flex-grow: 1;
+
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title-bar__instructions h2 {
+  font-weight: 500;
+  opacity: 0;
+}
+
+.title-bar__instructions > * {
+  position: absolute;
+  width: 100%;
+
+  transition: opacity 0.5s ease;
+}
+
+.title-bar__instructions.flipped h2 {
+  opacity: 1;
+}
+
+.title-bar__instructions.flipped p {
+  opacity: 0;
+}
+
+#score {
+  color: palegreen;
+}
+
+.card {
+  max-width: 600px;
+  height: 300px;
+
+  margin: 100px auto;
+  color: #fff;
+
+  overflow: hidden;
+
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.042), 0 41.8px 33.4px rgba(0, 0, 0, 0.05),
+    0 100px 80px rgba(0, 0, 0, 0.07);
+}
+
+.card__front,
+.card__back {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  height: 100%;
+
+  padding: 20px;
+}
+
+.card__front {
+  background-color: cornflowerblue;
+}
+
+.card__back {
+  display: none;
+  background-color: indianred;
+}
+
+.card.flipped .card__front {
+  display: none;
+}
+
+.card.flipped .card__back {
+  display: flex;
+}
+
+.card p {
+  font-size: 24px;
+}
+
+.card h2 {
+  font-weight: 500;
+  font-size: 40px;
+}
+
+.yes-or-no {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

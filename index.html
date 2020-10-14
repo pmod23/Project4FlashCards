@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>States Flashcard Quiz</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+    <!-- Game Start Screen -->
+    <section id="start-screen" class="section">
+
+        <div class="container">
+            <h1>Start Flashcards Quiz!</h1>
+            <button class="btn">Let's Go!</button>
+        </div>
+
+    </section>
+
+
+    <!-- Main Flash Cards Interface -->
+    <section id="flash-cards" class="section">
+
+        <div class="container">
+
+            <!-- Section For Title Bar-->
+            <div class="title-bar">
+
+                <div class="title-bar__progress">
+                    <h2 id="progress">0/0</h2>
+                </div>
+
+                <div class="title-bar__instructions" id="instructions">
+                    <p>Click the card or press any key to flip the card.</p>
+                    <h2>Did you get it right?</h2>
+                </div>
+
+                <div class="title-bar__score">
+                    <h2 id="score">0</h2>
+                </div>
+
+            </div>
+
+
+            <!-- Flash Card Itself -->
+            <div class="card">
+
+                <div class="card__front">
+                    <p id="question">What is the capital of Georgia?</p>
+                </div>
+
+                <div class="card__back">
+                    <h2 id="answer">Atlanta</h2>
+                </div>
+
+            </div>
+
+
+            <!-- Buttons to Check Answer -->
+            <div class="yes-or-no">
+                <button class="btn-circle"><span>&times;</span></button>
+                <button class="btn-circle"><span>&check;</span></button>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- End Game Screen -->
+    <section id="end-screen" class="section">
+
+        <div class="container">
+            <h2 id="results">Good Job! You got 40/50 correct!</h2>
+            <button class="btn">Play Again</button>
+        </div>
+
+    </section>
+
+
+    <script src="index.js"></script>
+
+</body>
+</html>
