@@ -7,6 +7,8 @@
     <title>States Flashcard Quiz</title>
 
     <link rel="stylesheet" href="style.css">
+    <script src="questions.js"></script>
+
 
 </head>
 <body>
@@ -16,14 +18,14 @@
 
         <div class="container">
             <h1>Start Flashcards Quiz!</h1>
-            <button class="btn">Let's Go!</button>
+            <button id="start-button"class="btn">Let's Go!</button>
         </div>
 
     </section>
 
 
     <!-- Main Flash Cards Interface -->
-    <section id="flash-cards" class="section">
+    <section id="flash-cards" class="section hide">
 
         <div class="container">
 
@@ -50,29 +52,28 @@
             <div class="card">
 
                 <div class="card__front">
-                    <p id="question">What is the capital of Georgia?</p>
+                    <p id="question">What is the capital of <span id="state-name"></span>?</p>
                 </div>
 
                 <div class="card__back">
-                    <h2 id="answer">Atlanta</h2>
+                    <h2 id="answer"></h2>
+
+                    <!-- Buttons to Check Answer -->
+            <div class="yes-or-no">
+                <button id="yes"class="btn-circle"><span>&check;</span></button>
+                <button id="no"class="btn-circle"><span>&times;</span></button>
+            </div>
                 </div>
 
             </div>
 
-
-            <!-- Buttons to Check Answer -->
-            <div class="yes-or-no">
-                <button class="btn-circle"><span>&times;</span></button>
-                <button class="btn-circle"><span>&check;</span></button>
-            </div>
-
-        </div>
+</div>
 
     </section>
 
 
     <!-- End Game Screen -->
-    <section id="end-screen" class="section">
+    <section id="end-screen" class="section hide">
 
         <div class="container">
             <h2 id="results">Good Job! You got 40/50 correct!</h2>
@@ -82,7 +83,7 @@
     </section>
 
 
-    <script src="index.js"></script>
+    <script src="script.js"></script>
 
 </body>
 </html>
