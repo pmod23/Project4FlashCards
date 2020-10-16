@@ -7,7 +7,7 @@
     // Set Progress bar
 
 
-// Playling The Game
+// Playing The Game
 
     // IF
         // last question AND there are no incorrect ones left, then end the game
@@ -23,6 +23,39 @@
         // Go To next card
 
         // Update Progress
+
+        const keyboardEvents = (event) => {
+
+            switch (event.code) {
+
+                case 'Space':
+                    game.flipCard();
+                    break;
+
+                case 'KeyY':
+                    game.reportAnswer(true);
+                    break;
+
+                case 'KeyN':
+                    game.reportAnswer(false);
+                    break;
+
+            }
+
+        }
+
+        const restartGame = () => {
+
+            document.getElementById("end-screen").classList.add("hide");
+            document.getElementById("start-screen").classList.remove("hide");
+
+            const main = document.querySelector('#game-container');
+
+            main.parentElement.replaceChild(main.cloneNode(true), main);
+
+            game = new Flashcards();
+
+        }
 
 
         class Flashcards {
@@ -67,25 +100,7 @@
 
                 document.querySelector('.card__front').addEventListener('click', () => this.flipCard());
 
-                document.addEventListener('keyup', event => {
-
-                    switch (event.code) {
-
-                        case 'Space':
-                            this.flipCard();
-                            break;
-
-                        case 'KeyY':
-                            this.reportAnswer(true);
-                            break;
-
-                        case 'KeyN':
-                            this.reportAnswer(false);
-                            break;
-
-                    }
-
-                });
+                document.addEventListener('keyup', keyboardEvents);
 
 
                 document.querySelectorAll('.btn-circle').forEach((button) => {
@@ -95,6 +110,7 @@
                 });
 
 
+                document.getElementById('restart').addEventListener('click', restartGame);
 
             }
 
@@ -189,6 +205,9 @@
 
             finish() {
 
+                // Remove Event Listener For Keyboard Events
+                document.removeEventListener('keyup', keyboardEvents);
+
                 const percent = (this.score / this.allQuestions.length) * 100;
                 const score = `${this.score}/${this.allQuestions.length}`;
                 let message = `Good Job! You got ${score} correct!`;
@@ -198,10 +217,10 @@
 
 
                 document.getElementById('results').textContent = message;
-
                 document.getElementById("end-screen").classList.remove("hide");
                 document.getElementById("flash-cards").classList.add("hide");
 
+                if (this.flipped) this.flipCard();
 
             }
 
@@ -210,18 +229,3 @@
 
         // Start Game
         let game = new Flashcards();
-
-
-        // Restart Game
-        document.getElementById('restart').addEventListener('click', () => {
-
-            document.getElementById("end-screen").classList.add("hide");
-            document.getElementById("start-screen").classList.remove("hide");
-
-            const main = document.querySelector('#game-container');
-
-            main.parentElement.replaceChild(main.cloneNode(true), main);
-
-            game = new Flashcards();
-
-        });
