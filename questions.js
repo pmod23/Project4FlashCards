@@ -52,3 +52,14 @@ const getQuestions = () => {
         {state: 'Wyoming', capital: 'Cheyenne' }
     ];
 }
+
+
+const getQuestionsShort = () => {
+    return [
+        {state: 'Alabama', capital: 'Montgomery' },
+        {state: 'Alaska', capital: 'Juneau' },
+        {state: 'Arizona', capital: 'Phoenix' },
+        {state: 'Arkansas', capital: 'Little Rock' },
+        {state: 'California', capital: 'Sacramento' }
+    ];
+}

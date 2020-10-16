@@ -69,8 +69,6 @@
 
                 document.addEventListener('keyup', event => {
 
-                    console.log(event.code);
-
                     switch (event.code) {
 
                         case 'Space':
@@ -87,8 +85,16 @@
 
                     }
 
+                });
+
+
+                document.querySelectorAll('.btn-circle').forEach((button) => {
+
+                    button.addEventListener('click', () => this.reportAnswer(button.dataset.correct === 'true'));
 
                 });
+
+
 
             }
 
@@ -115,32 +121,47 @@
 
             flipCard() {
 
-                console.log('flip the card');
-
                 this.elements.card.classList.toggle('flipped');
+                this.elements.instructions.classList.toggle('flipped');
 
-
-                if (this.flipped) this.flipped = false;
-                else this.flipped = true;
-
+                this.flipped = this.flipped ? false : true;
 
             }
 
 
             reportAnswer(isCorrect) {
 
+                if (!this.flipped) return;
+
+
                 if (isCorrect) {
-                    console.log('You got it right');
+                    // Increase Score
+                    if (this.trackProgress) this.score++;
                 }
 
                 else {
-                    console.log('you got it wrong');
+                    this.incorrectQuestions.push(this.questions[this.currentQuestion]);
                 }
+
+                this.nextQuestion();
 
             }
 
 
             nextQuestion() {
+
+                this.currentQuestion++;
+
+                if (this.currentQuestion === this.questions.length) return this.endOfCards();
+
+                this.elements.score.textContent = this.score;
+
+                this.elements.progress.textContent = `${this.currentQuestion + 1}/${this.questions.length}`;
+
+                this.elements.stateName.textContent = this.questions[this.currentQuestion].state;
+                this.elements.capital.textContent = this.questions[this.currentQuestion].capital;
+
+                this.flipCard();
 
             }
 
@@ -150,10 +171,14 @@
                 // This means there are incorrect questions
                 if (this.incorrectQuestions.length) {
 
+                    console.log(this.incorrectQuestions);
+
                     this.questions = this.incorrectQuestions;
                     this.incorrectQuestions = [];
-                    this.currentQuestion = 0;
+                    this.currentQuestion = -1;
                     this.trackProgress = false;
+
+                    this.nextQuestion();
 
                 }
 
@@ -164,9 +189,39 @@
 
             finish() {
 
+                const percent = (this.score / this.allQuestions.length) * 100;
+                const score = `${this.score}/${this.allQuestions.length}`;
+                let message = `Good Job! You got ${score} correct!`;
+
+                if (percent < 50) message = `Try again! You got ${score} correct.`;
+                else if (percent >= 90) message = `Great work! You got ${score} correct!`;
+
+
+                document.getElementById('results').textContent = message;
+
+                document.getElementById("end-screen").classList.remove("hide");
+                document.getElementById("flash-cards").classList.add("hide");
+
+
             }
 
         }
 
 
-        const game = new Flashcards();
+        // Start Game
+        let game = new Flashcards();
+
+
+        // Restart Game
+        document.getElementById('restart').addEventListener('click', () => {
+
+            document.getElementById("end-screen").classList.add("hide");
+            document.getElementById("start-screen").classList.remove("hide");
+
+            const main = document.querySelector('#game-container');
+
+            main.parentElement.replaceChild(main.cloneNode(true), main);
+
+            game = new Flashcards();
+
+        });

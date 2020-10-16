@@ -32,10 +32,18 @@ body {
   text-align: center;
 }
 
+#start-screen {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(Flag.jpg);
+  background-size: cover;
+}
+
 h1 {
   margin-bottom: 30px;
   font-weight: 400;
   font-size: 60px;
+
+  color: #fff;
 }
 
 #results {
@@ -59,8 +67,8 @@ h1 {
   height: 80px;
   width: 80px;
 
-  border: 3px solid palegreen;
-  color: palegreen;
+  border: 3px solid #fff;
+  color: #fff;
   border-radius: 50%;
   background: transparent;
 
@@ -73,19 +81,19 @@ h1 {
 
 .btn-circle:hover,
 .btn-circle:focus {
-  background-color: palegreen;
-  color: #fff;
+  background-color: #fff;
+  color: red;
   outline: none;
 }
 
 .btn-circle:first-child {
-  border-color: indianred;
-  color: indianred;
+  border-color: lightgreen;
+  color: lightgreen;
 }
 
 .btn-circle:first-child:hover,
 .btn-circle:first-child:focus {
-  background-color: indianred;
+  background-color: lightgreen;
   color: #fff;
 }
 
@@ -142,7 +150,7 @@ h1 {
 }
 
 #score {
-  color: palegreen;
+  color: black;
 }
 
 .card {
@@ -163,8 +171,6 @@ h1 {
 .card__front,
 .card__back {
   display: flex;
-  justify-content: center;
-  align-items: center;
 
   text-align: center;
   height: 100%;
@@ -173,10 +179,15 @@ h1 {
 }
 
 .card__front {
+  justify-content: center;
+  align-items: center;
   background-color: rgb(58, 119, 231);
 }
 
 .card__back {
+  flex-direction: column;
+  justify-content: center;
+
   display: none;
   background-color: rgb(235, 48, 48);
 }
@@ -196,9 +207,11 @@ h1 {
 .card h2 {
   font-weight: 500;
   font-size: 40px;
+
+  margin-bottom: 25px;
 }
 
-.yes-or-no {
+.card__back div {
   width: 100%;
   display: flex;
   justify-content: center;
